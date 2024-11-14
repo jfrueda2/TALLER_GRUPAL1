@@ -1,21 +1,26 @@
 # TALLER_GRUPAL1
-Crear una API
 
-Este proyecto es una API y una interfaz gráfica para la gestión de productos. Permite realizar operaciones CRUD sobre productos (Crear, Leer, Actualizar, Eliminar).
+## Crear una API
 
-# Requisitos
+Este proyecto consiste en el desarrollo de una API junto con una interfaz gráfica para la gestión de productos. La API permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre productos, facilitando la interacción con una base de datos MySQL a través de Flask y Flask-SQLAlchemy.
 
-- Python 
+## Requisitos
+
+Para ejecutar este proyecto, asegúrate de tener instalados los siguientes requisitos:
+
+- Python
 - Flask
 - Flask-SQLAlchemy
-- Postman 
+- Postman
 - MySQL
 
-# Instalación
+## Instalación
 
-Para ejecutar el programa debemos estar en la raiz de la carpeta y ejecutar el comando
+Para ejecutar el programa, primero debes estar en la raíz de la carpeta y ejecutar el siguiente comando:
 
- - docker-compose up --build 
+```bash
+docker-compose up --build 
+```
 
 Se deber tomar en cuenta que en primera instancia, se va a generar ciertos errores hasta
 que la base de datos se active correctamente.
