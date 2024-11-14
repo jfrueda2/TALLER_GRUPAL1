@@ -30,17 +30,20 @@ que la base de datos se active correctamente.
 Se crearon endpoints para ver, editar, guardar y eliminar
 
 ## VER TODOS LOS PRODUCTOS
+```bash
 @app.route('/api/productos', methods=['GET'])
 def obtener_productos():
     productos = Producto.query.all()
     return jsonify([{'id': p.id, 'nombre': p.nombre, 'precio': p.precio, 'descripcion': p.descripcion} for p in productos])
+```
 
  --POSTMAN 
-
+```bash
  (get) http://localhost:5000/api/productos
+```
 
  --PRUEBAS POSTMAN
-
+```bash
  pm.test("Response status code is 200", function () {
     pm.expect(pm.response.code).to.equal(200);
 });
@@ -80,9 +83,10 @@ pm.test("Precio is a non-negative number", function () {
     pm.expect(item.precio).to.be.a('number').and.to.be.at.least(0);
   });
 });
-
+```
 
 ## AGREGAR
+```bash
 @app.route('/api/productos', methods=['POST'])
 def api_agregar_producto():
     datos = request.get_json()
@@ -90,19 +94,20 @@ def api_agregar_producto():
     db.session.add(nuevo_producto)
     db.session.commit()
     return jsonify({'id': nuevo_producto.id}), 201
-
+```
  --POSTMAN
-
+```bash
 (post) http://localhost:5000/api/productos
-
+```
+```bash
  {
   "nombre": "Product B",
   "precio": 9.99,
   "descripcion": "Holi amigos"
 }
-
+```
 --PRUEBAS POSTMAN
-
+```bash
 pm.test("Response status code is 201", function () {
     pm.expect(pm.response.code).to.equal(201);
 });
@@ -133,19 +138,20 @@ pm.test("Id is a non-negative integer", function () {
 pm.test("Content-Type is application/json", function () {
   pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
 });
-
+```
 ## OBTENER POR ID
+```bash
 @app.route('/api/productos/<int:id>', methods=['GET'])
 def obtener_producto(id):
     producto = Producto.query.get_or_404(id)
     return jsonify({'id': producto.id, 'nombre': producto.nombre, 'precio': producto.precio, 'descripcion': producto.descripcion})
-
+```
 --POSTMAN
-
+```bash
 (get) http://localhost:5000/api/productos/1
-
+```
 --PRUEBAS POSTMAN
-
+```bash
 // Updated test script to handle the TypeError
 pm.test("Response status code is 200", function () {
     pm.expect(pm.response.code).to.equal(200);
@@ -179,8 +185,9 @@ pm.test("Precio is a non-negative number", function () {
   
     pm.expect(responseData.precio).to.be.a('number').and.to.be.at.least(0);
 });
-
+```
 ## ACTUALIZAR
+```bash
 @app.route('/api/productos/<int:id>', methods=['PUT'])
 def api_actualizar_producto(id):
     datos = request.get_json()
@@ -190,9 +197,9 @@ def api_actualizar_producto(id):
     producto.descripcion = datos.get('descripcion')
     db.session.commit()
     return jsonify({'id': producto.id})
-
+```
 --POSTMAN
-
+```bash
 (put) http://localhost:5000/api/productos/1
 
 --PRUEBAS POSTMAN
@@ -226,13 +233,13 @@ def api_eliminar_producto(id):
     db.session.delete(producto)
     db.session.commit()
     return '', 204
-
+```
 --POSTMAN
-
+```bash
 (delete) http://localhost:5000/api/productos/4
-
+```
 --PRUEBAS POSTMAN
-
+```bash
 pm.test("Response status code is 204", function () { 
     pm.expect(pm.response.code).to.equal(204); 
 });
@@ -244,3 +251,4 @@ pm.test("Response time is less than 300ms", function () {
 pm.test("Response body is empty after successful deletion", function () { 
     pm.expect(pm.response.text()).to.be.empty; 
 });
+```
