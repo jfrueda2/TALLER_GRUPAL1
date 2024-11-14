@@ -225,8 +225,10 @@ pm.test("Response Content-Type is application/json", function () {
 pm.test("Response time is less than 200ms", function () {
   pm.expect(pm.response.responseTime).to.be.below(200);
 });
+```
 
 ## ELIMINAR
+```bash
 @app.route('/api/productos/<int:id>', methods=['DELETE'])
 def api_eliminar_producto(id):
     producto = Producto.query.get_or_404(id)
