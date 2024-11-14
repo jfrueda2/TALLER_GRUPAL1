@@ -27,9 +27,10 @@ que la base de datos se active correctamente.
 
 # Endpoints 
 
-Se crearon endpoints para ver, editar, guardar y eliminar
+Se han creado varios endpoints para interactuar con los productos. A continuación, se detallan los métodos disponibles, junto con una breve descripción de su funcionamiento.
 
 ## VER TODOS LOS PRODUCTOS
+Este endpoint permite obtener todos los productos almacenados en la base de datos. Devuelve una lista con los productos disponibles, incluyendo su id, nombre, precio y descripción.
 ```bash
 @app.route('/api/productos', methods=['GET'])
 def obtener_productos():
@@ -86,6 +87,7 @@ pm.test("Precio is a non-negative number", function () {
 ```
 
 ## AGREGAR
+Este endpoint permite agregar un nuevo producto a la base de datos. Se espera que el cliente envíe los datos del producto en formato JSON (nombre, precio, descripción). Al agregar un producto exitosamente, el servidor devolverá el id del producto creado.
 ```bash
 @app.route('/api/productos', methods=['POST'])
 def api_agregar_producto():
@@ -140,6 +142,7 @@ pm.test("Content-Type is application/json", function () {
 });
 ```
 ## OBTENER POR ID
+Este endpoint permite obtener un producto específico utilizando su id. Si el producto no existe, devolverá un error 404. Si el producto existe, se devolverán los datos del producto solicitado.
 ```bash
 @app.route('/api/productos/<int:id>', methods=['GET'])
 def obtener_producto(id):
@@ -187,6 +190,7 @@ pm.test("Precio is a non-negative number", function () {
 });
 ```
 ## ACTUALIZAR
+Este endpoint permite actualizar los detalles de un producto específico. Se requiere enviar los nuevos valores del producto en el cuerpo de la solicitud en formato JSON. El id del producto debe ser proporcionado en la URL. Si la actualización es exitosa, se devolverá el id del producto actualizado.
 ```bash
 @app.route('/api/productos/<int:id>', methods=['PUT'])
 def api_actualizar_producto(id):
@@ -228,6 +232,7 @@ pm.test("Response time is less than 200ms", function () {
 ```
 
 ## ELIMINAR
+Este endpoint permite eliminar un producto específico de la base de datos utilizando su id. Si el producto es eliminado correctamente, el servidor devolverá un código de estado 204 sin contenido.
 ```bash
 @app.route('/api/productos/<int:id>', methods=['DELETE'])
 def api_eliminar_producto(id):
