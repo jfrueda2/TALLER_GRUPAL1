@@ -20,7 +20,7 @@ Para ejecutar el programa debemos estar en la raiz de la carpeta y ejecutar el c
 Se deber tomar en cuenta que en primera instancia, se va a generar ciertos errores hasta
 que la base de datos se active correctamente.
 
-## Endpoints
+## Endpoints ##
 
 Se crearon endpoints para ver, editar, guardar y eliminar
 
