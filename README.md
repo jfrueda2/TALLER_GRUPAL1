@@ -3,7 +3,7 @@ Crear una API
 
 Este proyecto es una API y una interfaz gráfica para la gestión de productos. Permite realizar operaciones CRUD sobre productos (Crear, Leer, Actualizar, Eliminar).
 
-## Requisitos
+# Requisitos
 
 - Python 
 - Flask
@@ -11,7 +11,7 @@ Este proyecto es una API y una interfaz gráfica para la gestión de productos. 
 - Postman 
 - MySQL
 
-## Instalación
+# Instalación
 
 Para ejecutar el programa debemos estar en la raiz de la carpeta y ejecutar el comando
 
@@ -20,17 +20,17 @@ Para ejecutar el programa debemos estar en la raiz de la carpeta y ejecutar el c
 Se deber tomar en cuenta que en primera instancia, se va a generar ciertos errores hasta
 que la base de datos se active correctamente.
 
-## Endpoints ##
+# Endpoints 
 
 Se crearon endpoints para ver, editar, guardar y eliminar
 
-# VER TODOS LOS PRODUCTOS
+## VER TODOS LOS PRODUCTOS
 @app.route('/api/productos', methods=['GET'])
 def obtener_productos():
     productos = Producto.query.all()
     return jsonify([{'id': p.id, 'nombre': p.nombre, 'precio': p.precio, 'descripcion': p.descripcion} for p in productos])
 
-# AGREGAR
+## AGREGAR
 @app.route('/api/productos', methods=['POST'])
 def api_agregar_producto():
     datos = request.get_json()
@@ -39,13 +39,13 @@ def api_agregar_producto():
     db.session.commit()
     return jsonify({'id': nuevo_producto.id}), 201
 
-# OBTENER POR ID
+## OBTENER POR ID
 @app.route('/api/productos/<int:id>', methods=['GET'])
 def obtener_producto(id):
     producto = Producto.query.get_or_404(id)
     return jsonify({'id': producto.id, 'nombre': producto.nombre, 'precio': producto.precio, 'descripcion': producto.descripcion})
 
-# ACTUALIZAR
+## ACTUALIZAR
 @app.route('/api/productos/<int:id>', methods=['PUT'])
 def api_actualizar_producto(id):
     datos = request.get_json()
@@ -56,7 +56,7 @@ def api_actualizar_producto(id):
     db.session.commit()
     return jsonify({'id': producto.id})
 
-# ELIMINAR
+## ELIMINAR
 @app.route('/api/productos/<int:id>', methods=['DELETE'])
 def api_eliminar_producto(id):
     producto = Producto.query.get_or_404(id)
